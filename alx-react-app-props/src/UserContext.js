@@ -1,6 +1,4 @@
-// src/UserContext.js
 import React from "react";
 
-const UserContext = React.createContext();
-
-export default UserContext;
+// ✅ تصدير مسمى (Named Export)
+export const UserContext = React.createContext(null);
