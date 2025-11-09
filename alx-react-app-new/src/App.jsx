@@ -3,15 +3,19 @@ import Header from './components/Header'
 import MainContent from './components/MainContent'
 import Footer from './components/Footer'
 import UserProfile from './components/UserProfile'
-import WelcomeMessage from './components/WelcomeMessage'
+import Counter from './components/Counter'
 
 function App() {
   return (
     <>
       <Header />
+      
+      {/* Counter Component */}
+      <Counter />
+      
       <MainContent />
       
-      {/* UserProfile Components with different props */}
+      {/* UserProfile Components */}
       <UserProfile 
         name="Alice" 
         age="25" 
@@ -31,7 +35,6 @@ function App() {
       />
       
       <Footer />
-      <WelcomeMessage />
     </>
   )
 }
