@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import useRecipeStore from './recipeStore';
 
 const RecipeList = () => {
@@ -39,7 +40,9 @@ const RecipeList = () => {
                                 boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                             }}
                         >
-                            <h3 style={{ marginTop: 0, color: '#333' }}>{recipe.title}</h3>
+                            <Link to={`/recipe/${recipe.id}`} style={{ textDecoration: 'none' }}>
+                                <h3 style={{ marginTop: 0, color: '#333' }}>{recipe.title}</h3>
+                            </Link>
                             <p style={{ color: '#666', lineHeight: '1.5' }}>{recipe.description}</p>
                             {recipe.prepTime && (
                                 <p style={{
