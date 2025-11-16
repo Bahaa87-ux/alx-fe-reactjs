@@ -4,6 +4,8 @@ import SearchBar from './components/SearchBar';
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
 import useRecipeStore from './components/recipeStore';
 
 function App() {
@@ -34,6 +36,30 @@ function App() {
                 title: 'Chocolate Cake',
                 description: 'Rich and moist chocolate layer cake with frosting',
                 prepTime: 60
+            },
+            {
+                id: 5,
+                title: 'Beef Tacos',
+                description: 'Mexican-style tacos with seasoned beef and fresh toppings',
+                prepTime: 25
+            },
+            {
+                id: 6,
+                title: 'Vegetable Stir Fry',
+                description: 'Quick and healthy Asian-inspired vegetable dish',
+                prepTime: 20
+            },
+            {
+                id: 7,
+                title: 'Margherita Pizza',
+                description: 'Classic Italian pizza with tomato, mozzarella, and basil',
+                prepTime: 40
+            },
+            {
+                id: 8,
+                title: 'Greek Salad',
+                description: 'Fresh Mediterranean salad with feta cheese and olives',
+                prepTime: 10
             }
         ];
 
@@ -50,18 +76,72 @@ function App() {
                 <header style={{
                     backgroundColor: '#3498db',
                     color: 'white',
-                    padding: '30px 20px',
-                    textAlign: 'center',
+                    padding: '20px',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                 }}>
-                    <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-                        <h1 style={{ margin: '0 0 10px 0', fontSize: '36px' }}>
-                            🍳 Recipe Sharing Application
-                        </h1>
-                    </Link>
-                    <p style={{ margin: 0, fontSize: '16px', opacity: 0.9 }}>
-                        Discover and share amazing recipes
-                    </p>
+                    <div style={{
+                        maxWidth: '1200px',
+                        margin: '0 auto',
+                        textAlign: 'center'
+                    }}>
+                        <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+                            <h1 style={{ margin: '0 0 15px 0', fontSize: '36px' }}>
+                                🍳 Recipe Sharing Application
+                            </h1>
+                        </Link>
+
+                        <nav style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            gap: '15px',
+                            flexWrap: 'wrap'
+                        }}>
+                            <Link
+                                to="/"
+                                style={{
+                                    color: 'white',
+                                    textDecoration: 'none',
+                                    padding: '10px 20px',
+                                    backgroundColor: 'rgba(255,255,255,0.2)',
+                                    borderRadius: '20px',
+                                    fontSize: '16px',
+                                    transition: 'background-color 0.3s'
+                                }}
+                            >
+                                🏠 Home
+                            </Link>
+
+                            <Link
+                                to="/favorites"
+                                style={{
+                                    color: 'white',
+                                    textDecoration: 'none',
+                                    padding: '10px 20px',
+                                    backgroundColor: 'rgba(255,255,255,0.2)',
+                                    borderRadius: '20px',
+                                    fontSize: '16px',
+                                    transition: 'background-color 0.3s'
+                                }}
+                            >
+                                ❤️ Favorites
+                            </Link>
+
+                            <Link
+                                to="/recommendations"
+                                style={{
+                                    color: 'white',
+                                    textDecoration: 'none',
+                                    padding: '10px 20px',
+                                    backgroundColor: 'rgba(255,255,255,0.2)',
+                                    borderRadius: '20px',
+                                    fontSize: '16px',
+                                    transition: 'background-color 0.3s'
+                                }}
+                            >
+                                💡 Recommendations
+                            </Link>
+                        </nav>
+                    </div>
                 </header>
 
                 <main style={{
@@ -99,6 +179,34 @@ function App() {
                         />
 
                         <Route path="/recipe/:id" element={<RecipeDetails />} />
+
+                        <Route
+                            path="/favorites"
+                            element={
+                                <div style={{
+                                    backgroundColor: 'white',
+                                    padding: '30px',
+                                    borderRadius: '10px',
+                                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                                }}>
+                                    <FavoritesList />
+                                </div>
+                            }
+                        />
+
+                        <Route
+                            path="/recommendations"
+                            element={
+                                <div style={{
+                                    backgroundColor: 'white',
+                                    padding: '30px',
+                                    borderRadius: '10px',
+                                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                                }}>
+                                    <RecommendationsList />
+                                </div>
+                            }
+                        />
                     </Routes>
                 </main>
             </div>

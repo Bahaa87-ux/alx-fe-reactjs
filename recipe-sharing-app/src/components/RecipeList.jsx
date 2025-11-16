@@ -8,11 +8,25 @@ const RecipeList = () => {
     const searchTerm = useRecipeStore((state) => state.searchTerm);
     const filterRecipes = useRecipeStore((state) => state.filterRecipes);
 
+    const favorites = useRecipeStore((state) => state.favorites);
+    const addFavorite = useRecipeStore((state) => state.addFavorite);
+    const removeFavorite = useRecipeStore((state) => state.removeFavorite);
+
     useEffect(() => {
         filterRecipes();
     }, [recipes, filterRecipes]);
 
     const displayRecipes = searchTerm ? filteredRecipes : recipes;
+
+    const isFavorite = (recipeId) => favorites.includes(recipeId);
+
+    const toggleFavorite = (recipeId) => {
+        if (isFavorite(recipeId)) {
+            removeFavorite(recipeId);
+        } else {
+            addFavorite(recipeId);
+        }
+    };
 
     return (
         <div>
@@ -37,13 +51,41 @@ const RecipeList = () => {
                                 borderRadius: '8px',
                                 padding: '20px',
                                 backgroundColor: '#fff',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                                position: 'relative'
                             }}
                         >
+                            {/* ✅ Step 3: زر المفضلة */}
+                            <button
+                                onClick={() => toggleFavorite(recipe.id)}
+                                style={{
+                                    position: 'absolute',
+                                    top: '15px',
+                                    right: '15px',
+                                    background: 'none',
+                                    border: 'none',
+                                    fontSize: '28px',
+                                    cursor: 'pointer',
+                                    transition: 'transform 0.2s',
+                                    color: isFavorite(recipe.id) ? '#e74c3c' : '#ddd'
+                                }}
+                                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.2)'}
+                                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                                title={isFavorite(recipe.id) ? 'Remove from favorites' : 'Add to favorites'}
+                            >
+                                {isFavorite(recipe.id) ? '❤️' : '🤍'}
+                            </button>
+
                             <Link to={`/recipe/${recipe.id}`} style={{ textDecoration: 'none' }}>
-                                <h3 style={{ marginTop: 0, color: '#333' }}>{recipe.title}</h3>
+                                <h3 style={{ marginTop: 0, color: '#333', marginRight: '45px' }}>
+                                    {recipe.title}
+                                </h3>
                             </Link>
-                            <p style={{ color: '#666', lineHeight: '1.5' }}>{recipe.description}</p>
+
+                            <p style={{ color: '#666', lineHeight: '1.5' }}>
+                                {recipe.description}
+                            </p>
+
                             {recipe.prepTime && (
                                 <p style={{
                                     fontSize: '14px',
