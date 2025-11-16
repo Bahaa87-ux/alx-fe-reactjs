@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import useRecipeStore from './recipeStore';
 
 const RecipeList = () => {
-    const recipes = useRecipeStore((state) => state.recipes);
     const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
+    const recipes = useRecipeStore((state) => state.recipes);
     const searchTerm = useRecipeStore((state) => state.searchTerm);
     const filterRecipes = useRecipeStore((state) => state.filterRecipes);
 
@@ -15,18 +15,45 @@ const RecipeList = () => {
 
     return (
         <div>
-            <h2>الوصفات ({displayRecipes.length})</h2>
+            <h2>Recipe List ({displayRecipes.length} recipes)</h2>
+
             {displayRecipes.length === 0 ? (
-                <p>لا توجد وصفات مطابقة للبحث</p>
+                <p style={{ textAlign: 'center', color: '#666', padding: '20px' }}>
+                    {searchTerm ? `No recipes found for "${searchTerm}"` : 'No recipes available'}
+                </p>
             ) : (
-                <ul>
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                    gap: '20px',
+                    marginTop: '20px'
+                }}>
                     {displayRecipes.map((recipe) => (
-                        <li key={recipe.id} style={{ marginBottom: '15px' }}>
-                            <h3>{recipe.title}</h3>
-                            <p>{recipe.description}</p>
-                        </li>
+                        <div
+                            key={recipe.id}
+                            style={{
+                                border: '1px solid #ddd',
+                                borderRadius: '8px',
+                                padding: '20px',
+                                backgroundColor: '#fff',
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                            }}
+                        >
+                            <h3 style={{ marginTop: 0, color: '#333' }}>{recipe.title}</h3>
+                            <p style={{ color: '#666', lineHeight: '1.5' }}>{recipe.description}</p>
+                            {recipe.prepTime && (
+                                <p style={{
+                                    fontSize: '14px',
+                                    color: '#27ae60',
+                                    fontWeight: 'bold',
+                                    marginTop: '10px'
+                                }}>
+                                    ⏱️ Prep time: {recipe.prepTime} minutes
+                                </p>
+                            )}
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );

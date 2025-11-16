@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { Link } from 'react-router-dom';
 
 const useRecipeStore = create((set) => ({
     recipes: [],
@@ -8,6 +7,14 @@ const useRecipeStore = create((set) => ({
 
     searchTerm: '',
     filteredRecipes: [],
+
+    setSearchTerm: (term) => set({ searchTerm: term }),
+
+    filterRecipes: () => set((state) => ({
+        filteredRecipes: state.recipes.filter((recipe) =>
+            recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+        )
+    })),
 
     addRecipe: (newRecipe) => set((state) => ({
         recipes: [...state.recipes, newRecipe]
@@ -38,15 +45,7 @@ const useRecipeStore = create((set) => ({
             state.favorites.includes(recipe.id) && Math.random() > 0.5
         );
         return { recommendations: recommended };
-    }),
-
-    setSearchTerm: (term) => set({ searchTerm: term }),
-
-    filterRecipes: () => set((state) => ({
-        filteredRecipes: state.recipes.filter((recipe) =>
-            recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-        )
-    }))
+    })
 }));
 
 export default useRecipeStore;

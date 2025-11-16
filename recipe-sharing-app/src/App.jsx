@@ -6,38 +6,55 @@ import useRecipeStore from './components/recipeStore';
 function App() {
     const setRecipes = useRecipeStore((state) => state.setRecipes);
 
-    // إضافة بيانات تجريبية عند تحميل التطبيق
     useEffect(() => {
         const sampleRecipes = [
             {
                 id: 1,
-                title: 'كشري مصري',
-                description: 'وجبة مصرية تقليدية من الأرز والمكرونة والعدس',
-                prepTime: 45
+                title: 'Spaghetti Carbonara',
+                description: 'Classic Italian pasta dish with eggs, cheese, and bacon',
+                prepTime: 30
             },
             {
                 id: 2,
-                title: 'محشي ورق عنب',
-                description: 'ورق عنب محشي بالأرز واللحم المفروم',
-                prepTime: 90
+                title: 'Chicken Curry',
+                description: 'Spicy and flavorful Indian-style chicken curry',
+                prepTime: 45
             },
             {
                 id: 3,
-                title: 'ملوخية بالدجاج',
-                description: 'طبق ملوخية خضراء مع الدجاج المشوي',
-                prepTime: 60
+                title: 'Caesar Salad',
+                description: 'Fresh romaine lettuce with parmesan and croutons',
+                prepTime: 15
             },
             {
                 id: 4,
-                title: 'فتة الباذنجان',
-                description: 'باذنجان مقلي مع الزبادي والثوم والخبز المحمص',
-                prepTime: 40
+                title: 'Chocolate Cake',
+                description: 'Rich and moist chocolate layer cake with frosting',
+                prepTime: 60
             },
             {
                 id: 5,
-                title: 'بامية باللحم',
-                description: 'بامية مطبوخة مع لحم البقر في صلصة الطماطم',
-                prepTime: 75
+                title: 'Beef Tacos',
+                description: 'Mexican-style tacos with seasoned beef and fresh toppings',
+                prepTime: 25
+            },
+            {
+                id: 6,
+                title: 'Vegetable Stir Fry',
+                description: 'Quick and healthy Asian-inspired vegetable dish',
+                prepTime: 20
+            },
+            {
+                id: 7,
+                title: 'Margherita Pizza',
+                description: 'Classic Italian pizza with tomato, mozzarella, and basil',
+                prepTime: 40
+            },
+            {
+                id: 8,
+                title: 'Greek Salad',
+                description: 'Fresh Mediterranean salad with feta cheese and olives',
+                prepTime: 10
             }
         ];
 
@@ -45,47 +62,52 @@ function App() {
     }, [setRecipes]);
 
     return (
-        <div style={styles.app}>
-            <header style={styles.header}>
-                <h1 style={styles.mainTitle}>🍳 تطبيق مشاركة الوصفات</h1>
-                <p style={styles.subtitle}>اكتشف وشارك أفضل الوصفات</p>
+        <div style={{
+            minHeight: '100vh',
+            backgroundColor: '#f5f5f5',
+            fontFamily: 'Arial, sans-serif'
+        }}>
+            <header style={{
+                backgroundColor: '#3498db',
+                color: 'white',
+                padding: '30px 20px',
+                textAlign: 'center',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+            }}>
+                <h1 style={{ margin: '0 0 10px 0', fontSize: '36px' }}>
+                    🍳 Recipe Sharing Application
+                </h1>
+                <p style={{ margin: 0, fontSize: '16px', opacity: 0.9 }}>
+                    Discover and share amazing recipes
+                </p>
             </header>
 
-            <main style={styles.main}>
-                <SearchBar />
-                <RecipeList />
+            <main style={{
+                maxWidth: '1200px',
+                margin: '0 auto',
+                padding: '40px 20px'
+            }}>
+                <div style={{
+                    backgroundColor: 'white',
+                    padding: '20px',
+                    borderRadius: '10px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                    marginBottom: '30px'
+                }}>
+                    <SearchBar />
+                </div>
+
+                <div style={{
+                    backgroundColor: 'white',
+                    padding: '30px',
+                    borderRadius: '10px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                }}>
+                    <RecipeList />
+                </div>
             </main>
         </div>
     );
 }
-
-const styles = {
-    app: {
-        minHeight: '100vh',
-        backgroundColor: '#f5f5f5',
-        fontFamily: 'Arial, sans-serif'
-    },
-    header: {
-        backgroundColor: '#3498db',
-        color: 'white',
-        padding: '30px 20px',
-        textAlign: 'center',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-    },
-    mainTitle: {
-        margin: '0 0 10px 0',
-        fontSize: '32px'
-    },
-    subtitle: {
-        margin: 0,
-        fontSize: '16px',
-        opacity: 0.9
-    },
-    main: {
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '30px 20px'
-    }
-};
 
 export default App;
