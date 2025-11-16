@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import SearchBar from './components/SearchBar';
 import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeDetails from './components/RecipeDetails';
 import useRecipeStore from './components/recipeStore';
 
 function App() {
@@ -26,6 +28,12 @@ function App() {
                 title: 'Caesar Salad',
                 description: 'Fresh romaine lettuce with parmesan and croutons',
                 prepTime: 15
+            },
+            {
+                id: 4,
+                title: 'Chocolate Cake',
+                description: 'Rich and moist chocolate layer cake with frosting',
+                prepTime: 60
             }
         ];
 
@@ -46,9 +54,11 @@ function App() {
                     textAlign: 'center',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                 }}>
-                    <h1 style={{ margin: '0 0 10px 0', fontSize: '36px' }}>
-                        🍳 Recipe Sharing Application
-                    </h1>
+                    <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+                        <h1 style={{ margin: '0 0 10px 0', fontSize: '36px' }}>
+                            🍳 Recipe Sharing Application
+                        </h1>
+                    </Link>
                     <p style={{ margin: 0, fontSize: '16px', opacity: 0.9 }}>
                         Discover and share amazing recipes
                     </p>
@@ -59,26 +69,37 @@ function App() {
                     margin: '0 auto',
                     padding: '40px 20px'
                 }}>
-                    <div style={{
-                        backgroundColor: 'white',
-                        padding: '20px',
-                        borderRadius: '10px',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                        marginBottom: '30px'
-                    }}>
-                        <SearchBar />
-                    </div>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <>
+                                    <AddRecipeForm />
 
-                    <div style={{
-                        backgroundColor: 'white',
-                        padding: '30px',
-                        borderRadius: '10px',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                    }}>
-                        <Routes>
-                            <Route path="/" element={<RecipeList />} />
-                        </Routes>
-                    </div>
+                                    <div style={{
+                                        backgroundColor: 'white',
+                                        padding: '20px',
+                                        borderRadius: '10px',
+                                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                                        marginBottom: '30px'
+                                    }}>
+                                        <SearchBar />
+                                    </div>
+
+                                    <div style={{
+                                        backgroundColor: 'white',
+                                        padding: '30px',
+                                        borderRadius: '10px',
+                                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                                    }}>
+                                        <RecipeList />
+                                    </div>
+                                </>
+                            }
+                        />
+
+                        <Route path="/recipe/:id" element={<RecipeDetails />} />
+                    </Routes>
                 </main>
             </div>
         </BrowserRouter>
