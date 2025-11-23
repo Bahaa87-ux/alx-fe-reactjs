@@ -6,7 +6,8 @@ function Search({ setUser }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSearch = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // يمنع إعادة تحميل الصفحة
     if (!username) return;
 
     setLoading(true);
@@ -18,12 +19,12 @@ function Search({ setUser }) {
       setUser(data);
     } else {
       setUser(null);
-      setError("Looks like we can’t find the user");
+      setError("Looks like we cant find the user");
     }
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
       <div className="flex gap-2">
         <input
           className="border px-3 py-2 rounded"
@@ -33,8 +34,8 @@ function Search({ setUser }) {
           onChange={(e) => setUsername(e.target.value)}
         />
         <button
+          type="submit"
           className="bg-blue-600 text-white px-4 py-2 rounded"
-          onClick={handleSearch}
         >
           Search
         </button>
@@ -42,7 +43,7 @@ function Search({ setUser }) {
 
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
-    </div>
+    </form>
   );
 }
 

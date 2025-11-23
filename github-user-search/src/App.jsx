@@ -14,8 +14,12 @@ function App() {
 
       {user && (
         <div className="mt-6 p-4 bg-white rounded shadow text-center">
-          <img className="w-24 h-24 rounded-full mx-auto" src={user.avatar_url} alt={user.login} />
-          <h2 className="text-xl font-bold mt-2">{user.login}</h2>
+          <img
+            className="w-24 h-24 rounded-full mx-auto"
+            src={user.avatar_url} // هنا الـ avatar_url
+            alt={user.login}      // alt = login
+          />
+          <h2 className="text-xl font-bold mt-2">{user.login}</h2> {/* login */}
           <a
             className="text-blue-600 underline mt-2 block"
             href={user.html_url}
