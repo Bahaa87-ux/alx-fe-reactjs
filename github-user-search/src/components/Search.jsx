@@ -5,9 +5,10 @@ function Search({ setUser }) {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [userData, setUserData] = useState(null);
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // يمنع إعادة تحميل الصفحة
+    e.preventDefault();
     if (!username) return;
 
     setLoading(true);
@@ -17,15 +18,17 @@ function Search({ setUser }) {
 
     if (data) {
       setUser(data);
+      setUserData(data);
     } else {
       setUser(null);
+      setUserData(null);
       setError("Looks like we cant find the user");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
-      <div className="flex gap-2">
+    <div className="flex flex-col items-center gap-4">
+      <form onSubmit={handleSubmit} className="flex gap-2">
         <input
           className="border px-3 py-2 rounded"
           type="text"
@@ -39,11 +42,29 @@ function Search({ setUser }) {
         >
           Search
         </button>
-      </div>
+      </form>
 
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
-    </form>
+
+      {userData && (
+        <div className="mt-6 p-4 bg-white rounded shadow text-center">
+          <img
+            className="w-24 h-24 rounded-full mx-auto"
+            src={userData.avatar_url}
+            alt={userData.login}
+          />
+          <h2 className="text-xl font-bold mt-2">{userData.login}</h2>
+          <a
+            className="text-blue-600 underline mt-2 block"
+            href={userData.html_url}
+            target="_blank"
+          >
+            Visit Profile
+          </a>
+        </div>
+      )}
+    </div>
   );
 }
 
