@@ -1,0 +1,22 @@
+{
+  "folders": [
+	{
+		"path": "../../../Form-Creation-Validation"
+	},
+	{
+		"path": "../../../ALX_Simple_Quiz"
+	},
+	{
+		"path": "E:/alx_learning/JSON"
+	},
+	{
+		"path": "E:/alx_learning/week6"
+	},
+	{
+		"path": "../.."
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "week6"
+  }
+}
