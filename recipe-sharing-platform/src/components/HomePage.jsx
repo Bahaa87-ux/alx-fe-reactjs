@@ -149,9 +149,12 @@ export default function HomePage() {
                             <button className="bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition-all duration-300 transform hover:scale-110 text-sm sm:text-base">
                                 🔍
                             </button>
-                            <button className="bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition-all duration-300 transform hover:scale-110 text-sm sm:text-base">
+                            <Link
+                                to="/add"
+                                className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+                            >
                                 ➕
-                            </button>
+                            </Link>
                             <button className="bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition-all duration-300 transform hover:scale-110 text-sm sm:text-base">
                                 ⚙️
                             </button>
