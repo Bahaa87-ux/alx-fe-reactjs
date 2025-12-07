@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function HomePage() {
+    const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -102,7 +104,9 @@ export default function HomePage() {
 
                                     {/* Action Buttons */}
                                     <div className="flex gap-2 sm:gap-3">
-                                        <button className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-2 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6 text-sm sm:text-base rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 active:translate-y-0">
+                                        <button
+                                            onClick={() => navigate(`/recipe/${recipe.id}`)}
+                                            className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-2 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6 text-sm sm:text-base rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 active:translate-y-0">
                                             View Recipe
                                         </button>
                                         <button className="px-3 sm:px-4 md:px-5 py-2 sm:py-3 md:py-4 border-3 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-bold rounded-xl transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-110 active:scale-95">
