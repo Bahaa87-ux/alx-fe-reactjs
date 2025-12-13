@@ -1,5 +1,5 @@
 import { Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { object, string } from 'yup';
 
 const FormikForm = () => {
     const initialValues = {
@@ -8,14 +8,14 @@ const FormikForm = () => {
         password: ''
     };
 
-    const validationSchema = Yup.object({
-        username: Yup.string()
+    const validationSchema = object({
+        username: string()
             .required('Username is required')
             .min(3, 'Username must be at least 3 characters'),
-        email: Yup.string()
+        email: string()
             .email('Invalid email address')
             .required('Email is required'),
-        password: Yup.string()
+        password: string()
             .required('Password is required')
             .min(6, 'Password must be at least 6 characters')
     });
