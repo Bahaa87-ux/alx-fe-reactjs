@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://via.placeholder.com/150",
+    "prepTime": "30 minutes",
+    "cookTime": "15 minutes",
+    "servings": 4,
+    "difficulty": "Medium",
+    "ingredients": [
+      "400g spaghetti",
+      "200g pancetta or bacon, diced",
+      "4 large eggs",
+      "100g Parmesan cheese, grated",
+      "2 cloves garlic, minced",
+      "Salt and black pepper to taste",
+      "Fresh parsley for garnish"
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to boil and cook spaghetti according to package directions.",
+      "While pasta cooks, fry the pancetta in a large skillet over medium heat until crispy, about 5-7 minutes.",
+      "In a bowl, whisk together eggs, Parmesan cheese, and black pepper.",
+      "Drain the pasta, reserving 1 cup of pasta water.",
+      "Add the hot pasta to the skillet with pancetta and toss to combine.",
+      "Remove from heat and quickly stir in the egg mixture, adding pasta water as needed to create a creamy sauce.",
+      "Serve immediately with extra Parmesan and black pepper.",
+      "Garnish with fresh parsley and enjoy!"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+    "image": "https://via.placeholder.com/150",
+    "prepTime": "45 minutes",
+    "cookTime": "30 minutes",
+    "servings": 6,
+    "difficulty": "Medium",
+    "ingredients": [
+      "800g boneless chicken, cut into chunks",
+      "1 cup yogurt",
+      "2 tablespoons tikka masala spice blend",
+      "3 tablespoons butter",
+      "1 large onion, finely chopped",
+      "4 cloves garlic, minced",
+      "1 tablespoon ginger, grated",
+      "400g crushed tomatoes",
+      "1 cup heavy cream",
+      "Salt to taste",
+      "Fresh cilantro for garnish",
+      "Lemon wedges for serving"
+    ],
+    "instructions": [
+      "Marinate chicken chunks in yogurt and half of the tikka masala spice for at least 30 minutes.",
+      "Grill or pan-fry the marinated chicken until cooked through and slightly charred. Set aside.",
+      "In a large pan, melt butter over medium heat and sauté onions until golden brown.",
+      "Add garlic and ginger, cook for 1 minute until fragrant.",
+      "Stir in remaining tikka masala spice and cook for 30 seconds.",
+      "Add crushed tomatoes and simmer for 10 minutes until sauce thickens.",
+      "Stir in heavy cream and add the cooked chicken pieces.",
+      "Simmer for another 5-10 minutes, adjusting seasoning with salt.",
+      "Garnish with fresh cilantro and serve hot with rice or naan bread."
+    ]
+  }
+]
