@@ -1,46 +1,51 @@
 import { useState } from 'react';
 
 const RegistrationForm = () => {
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: ''
-    });
+    // Individual state variables for each field
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const [errors, setErrors] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value);
+        if (errors.username) {
+            setErrors(prev => ({ ...prev, username: '' }));
+        }
+    };
 
-        if (errors[name]) {
-            setErrors(prev => ({
-                ...prev,
-                [name]: ''
-            }));
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        if (errors.email) {
+            setErrors(prev => ({ ...prev, email: '' }));
+        }
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        if (errors.password) {
+            setErrors(prev => ({ ...prev, password: '' }));
         }
     };
 
     const validateForm = () => {
         const newErrors = {};
 
-        if (!formData.username.trim()) {
+        if (!username.trim()) {
             newErrors.username = 'Username is required';
         }
 
-        if (!formData.email.trim()) {
+        if (!email.trim()) {
             newErrors.email = 'Email is required';
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
             newErrors.email = 'Email is invalid';
         }
 
-        if (!formData.password.trim()) {
+        if (!password.trim()) {
             newErrors.password = 'Password is required';
-        } else if (formData.password.length < 6) {
+        } else if (password.length < 6) {
             newErrors.password = 'Password must be at least 6 characters';
         }
 
@@ -57,11 +62,15 @@ const RegistrationForm = () => {
             return;
         }
 
-        console.log('Form submitted:', formData);
+        // Log form data
+        console.log('Form submitted:', { username, email, password });
         setIsSubmitted(true);
 
+        // Reset form
         setTimeout(() => {
-            setFormData({ username: '', email: '', password: '' });
+            setUsername('');
+            setEmail('');
+            setPassword('');
             setIsSubmitted(false);
         }, 3000);
     };
@@ -83,6 +92,7 @@ const RegistrationForm = () => {
                 )}
 
                 <div className="space-y-4">
+                    {/* Username Field */}
                     <div>
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
                             Username
@@ -91,8 +101,8 @@ const RegistrationForm = () => {
                             type="text"
                             id="username"
                             name="username"
-                            value={formData.username}
-                            onChange={handleChange}
+                            value={username}
+                            onChange={handleUsernameChange}
                             className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                                 errors.username ? 'border-red-500' : 'border-gray-300'
                             }`}
@@ -103,6 +113,7 @@ const RegistrationForm = () => {
                         )}
                     </div>
 
+                    {/* Email Field */}
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                             Email
@@ -111,8 +122,8 @@ const RegistrationForm = () => {
                             type="email"
                             id="email"
                             name="email"
-                            value={formData.email}
-                            onChange={handleChange}
+                            value={email}
+                            onChange={handleEmailChange}
                             className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                                 errors.email ? 'border-red-500' : 'border-gray-300'
                             }`}
@@ -123,6 +134,7 @@ const RegistrationForm = () => {
                         )}
                     </div>
 
+                    {/* Password Field */}
                     <div>
                         <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                             Password
@@ -131,8 +143,8 @@ const RegistrationForm = () => {
                             type="password"
                             id="password"
                             name="password"
-                            value={formData.password}
-                            onChange={handleChange}
+                            value={password}
+                            onChange={handlePasswordChange}
                             className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                                 errors.password ? 'border-red-500' : 'border-gray-300'
                             }`}
@@ -143,6 +155,7 @@ const RegistrationForm = () => {
                         )}
                     </div>
 
+                    {/* Submit Button */}
                     <button
                         onClick={handleSubmit}
                         className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200 font-medium"
