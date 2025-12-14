@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Profile from './components/Profile';
-import Blog from './pages/Blog';
+import Blog from './components/BlogPost';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const isAuthenticated = true;
