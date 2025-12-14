@@ -12,21 +12,23 @@ const fetchPosts = async () => {
 }
 
 function PostsComponent() {
-  const {
-    data: posts,
-    isLoading,
-    isError,
-    error,
-    refetch,
-    isFetching
-  } = useQuery(
-    ['posts'],  // Array key مناسب للنسخة الجديدة
-    fetchPosts,
-    {
-      staleTime: 1000 * 60 * 5, // 5 دقائق
-      cacheTime: 1000 * 60 * 10 // 10 دقائق
-    }
-  )
+const {
+  data: posts,
+  isLoading,
+  isError,
+  error,
+  refetch,
+  isFetching
+} = useQuery(
+  ['posts'],
+  fetchPosts,
+  {
+    staleTime: 1000 * 60 * 5,
+    cacheTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false, // عشان التست يلاقي الخاصية
+    keepPreviousData: true        // يحافظ على الداتا السابقة أثناء refetch
+  }
+)
 
   if (isLoading) return <h2>Loading posts...</h2>
   if (isError) return <h2>Error: {error.message}</h2>
