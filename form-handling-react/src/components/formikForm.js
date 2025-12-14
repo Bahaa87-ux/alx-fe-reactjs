@@ -9,35 +9,17 @@ const FormikForm = () => {
     };
 
     const validationSchema = Yup.object({
-        username: Yup.string().required('Username is required')
-            .min(3, 'Username must be at least 3 characters'),
-        email: Yup.string().required('Email is required')
-            .email('Invalid email address'),
-        password: Yup.string().required('Password is required')
-            .min(6, 'Password must be at least 6 characters')
+        username: Yup.string().required('Username is required').min(3, 'Username must be at least 3 characters'),
+        email: Yup.string().required('Email is required').email('Invalid email address'),
+        password: Yup.string().required('Password is required').min(6, 'Password must be at least 6 characters')
     });
 
     const handleSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
-        // Simulate API call
         setTimeout(() => {
             console.log('Form submitted:', values);
-
-            // You can add your API call here
-            // Example:
-            // fetch('https://api.example.com/register', {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify(values)
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //   console.log('Success:', data);
-            // });
-
             setStatus({ success: true });
             setSubmitting(false);
 
-            // Reset form after 3 seconds
             setTimeout(() => {
                 resetForm();
                 setStatus({ success: false });
@@ -52,7 +34,7 @@ const FormikForm = () => {
                     User Registration
                 </h2>
                 <p className="text-sm text-gray-600 mb-6 text-center">
-                    (Formik + Yup Validation)
+                    Formik + Yup Validation
                 </p>
 
                 <Formik
@@ -62,14 +44,13 @@ const FormikForm = () => {
                 >
                     {({ handleSubmit, isSubmitting, status }) => (
                         <div>
-                            {status?.success && (
+                            {status && status.success && (
                                 <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-                                    Registration successful! ✓
+                                    Registration successful!
                                 </div>
                             )}
 
                             <div className="space-y-4">
-                                {/* Username Field */}
                                 <div>
                                     <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
                                         Username
@@ -88,7 +69,6 @@ const FormikForm = () => {
                                     />
                                 </div>
 
-                                {/* Email Field */}
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                                         Email
@@ -107,7 +87,6 @@ const FormikForm = () => {
                                     />
                                 </div>
 
-                                {/* Password Field */}
                                 <div>
                                     <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                                         Password
@@ -126,10 +105,10 @@ const FormikForm = () => {
                                     />
                                 </div>
 
-                                {/* Submit Button */}
                                 <button
                                     onClick={handleSubmit}
                                     disabled={isSubmitting}
+                                    type="button"
                                     className={`w-full py-2 px-4 rounded-lg transition duration-200 font-medium ${
                                         isSubmitting
                                             ? 'bg-gray-400 cursor-not-allowed'
